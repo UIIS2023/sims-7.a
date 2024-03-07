@@ -1,0 +1,14 @@
+﻿<Window x:Class="BookingApp.WPF.Views.Owner.SuperOwnerWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.Views.Owner"
+        mc:Ignorable="d"
+        Title="SuperOwnerWin" Height="134" Width="170">
+    <StackPanel Margin="0,0,0,-1">
+        <Label Content="You are SuperOwner!" Width="127"/>
+        <Button Content="Close" Width="73" Height="29" Click="Button_Click"/>
+    </StackPanel>
+
+</Window>

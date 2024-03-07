@@ -1,0 +1,17 @@
+0|Center of Belgrade|1|1|False|Start
+1|Museum of Nikola Tesla|1|2|False|Mid
+2|St.Sava Temple|1|3|False|Mid
+3|Republic Square|1|4|False|Mid
+4|Center of Belgrade|1|5|False|End
+5|Center of Novi Sad|3|1|False|Start
+6|Duga Bridge|3|2|False|Mid
+7|Petrovaradin Fortress|3|3|False|Mid
+8|Hidden cathacombs|3|4|False|Mid
+9|Cafe Sat|3|5|False|Mid
+10|Center of Novi Sad|3|6|False|End
+11||9|1|False|Start
+12||9|2|False|End
+13|a|10|1|False|Start
+14|a|10|2|False|End
+15|a|11|1|False|Start
+16|a|11|2|False|End

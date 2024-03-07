@@ -1,0 +1,111 @@
+﻿<Page x:Class="BookingApp.WPF.Views.Guest1.MainWinPages.ForumPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.WPF.Views.Guest1.MainWinPages"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:converters="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+      xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="ForumPage">
+    <Page.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibility"></converters:BooleanToVisibilityConverter>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label Foreground="WhiteSmoke" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"  >Forum</Label>
+            <fa:ImageAwesome VerticalAlignment="Center" Margin="10,20,0,0" 
+                             Foreground="WhiteSmoke" Icon="ExclamationCircle" 
+                             Height="20"
+                             ToolTip="Double click on a thread to open it! Important threads are highlighted with a star!" 
+                             ToolTipService.InitialShowDelay="100"
+                             Visibility="{Binding Path=ttEnabled,Converter={StaticResource BooleanToVisibility}}"
+                             ></fa:ImageAwesome>
+        </StackPanel>
+
+        <Button Command="{Binding Path=NewThreadCommand}" Grid.Row="1" Content="Start new thread" Margin="30,0,0,0"
+                    Background="DarkCyan" Height="50" Foreground="WhiteSmoke" Width="200" FontSize="17" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <ListView Grid.Row="2" Background="#37306B" BorderThickness="0" Name="listViewReviews"
+                  ItemsSource="{Binding Path=forumThreads,NotifyOnSourceUpdated=True}" 
+                  Margin="30,30,30,30" SelectionMode="Single">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="BorderThickness" Value="0.8" />
+                    <Setter Property="BorderBrush" Value="WhiteSmoke" />
+                    <Setter Property="Padding" Value="10" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+
+            <ListView.ItemTemplate>
+                <DataTemplate >
+
+
+                    <Grid>
+                        <Grid.InputBindings>
+                            <MouseBinding Gesture="LeftDoubleClick" Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.OpenThreadCommand}" CommandParameter="{Binding}" ></MouseBinding>
+                        </Grid.InputBindings>
+                        <DockPanel >
+
+             
+
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                            <fa:ImageAwesome Icon="File" Height="40" Foreground="WhiteSmoke" Margin="0,0,5,0"></fa:ImageAwesome>
+
+                            <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Path=threadName}" FontWeight="Bold" FontSize="15" TextDecorations="Underline" Foreground="WhiteSmoke"></TextBlock>
+                                        </Label>
+                                        <fa:ImageAwesome Icon="Star" Margin="10,0,0,0" VerticalAlignment="Center" Height="20" Foreground="Orange" Visibility="{Binding Path=isImportant,Converter={StaticResource BooleanToVisibility}}" ></fa:ImageAwesome>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                    <Label Content="by" Foreground="WhiteSmoke"></Label>
+                                    <Label Content="{Binding Path=opUser.username}" FontStyle="Italic" Foreground="WhiteSmoke"></Label>
+
+                                    <Label Margin="10,0,0,0" Content="For location:" Foreground="WhiteSmoke"></Label>
+                                    <Label Content="{Binding Path=forLocation}" Foreground="WhiteSmoke"></Label>
+                                </StackPanel>
+                            </StackPanel>
+
+                            
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
+                            <Label Foreground="WhiteSmoke" FontWeight="ExtraBold" VerticalAlignment="Bottom" FontSize="20" Margin="0,0,0,0" Content="{Binding Path=isOpenText}">
+                                <Label.RenderTransform>
+                                    <RotateTransform Angle="-25" />
+                                </Label.RenderTransform>
+                            </Label>
+                            <Label Margin="30,0,0,0" Foreground="WhiteSmoke" Content="Thread started"></Label>
+                            <Label Foreground="WhiteSmoke" Content="{Binding Path=startDate,StringFormat=\{0:dd.MM.yyyy HH.mm\}}"></Label>
+                        </StackPanel>
+                    </DockPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+
+        </ListView>
+
+    </Grid>
+</Page>

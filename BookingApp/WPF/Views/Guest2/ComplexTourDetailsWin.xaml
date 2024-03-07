@@ -1,0 +1,31 @@
+﻿<Window x:Class="BookingApp.WPF.Views.Guest2.ComplexTourDetailsWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.Views.Guest2"
+        mc:Ignorable="d"
+        Title="ComplexTourDetailsWin" Height="600" Width="900" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="#b8c1ec">
+        <Label Foreground="#232946" Content="Your complex tour details:" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top" FontSize="28" FontWeight="Bold"/>
+
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding SelectedComplexTour.Stations}" Background="#f8f5f2" Foreground="#232946" BorderBrush="#b8c1ec" AutoGenerateColumns="False" IsReadOnly="True" Margin="60,92,60,92">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding id}" Width="Auto" />
+                <DataGridTextColumn Header="City" Binding="{Binding city}" Width="Auto" />
+                <DataGridTextColumn Header="State" Binding="{Binding state}" Width="Auto" />
+                <DataGridTextColumn Header="Language" Binding="{Binding language}" Width="Auto" />
+                <DataGridTextColumn Header="Number of Guests" Binding="{Binding numberOfGuests}" Width="Auto" />
+                <DataGridTextColumn Header="Start" Binding="{Binding start}" Width="Auto" />
+                <DataGridTextColumn Header="End" Binding="{Binding end}" Width="Auto" />
+                <DataGridTextColumn Header="Description" Binding="{Binding description}" Width="Auto" />
+                <DataGridTextColumn Header="Status" Binding="{Binding status}" Width="Auto" />
+                <DataGridTextColumn Header="Appointment" Binding="{Binding Appointment}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Background="#232946" Foreground="#fffffe" BorderBrush="#b8c1ec" Content="OK" Command="{Binding Ok}" HorizontalAlignment="Left" Margin="632,497,0,0" VerticalAlignment="Top" Height="45" Width="200" FontSize="20"/>
+
+
+    </Grid>
+</Window>

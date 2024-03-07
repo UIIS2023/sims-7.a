@@ -1,0 +1,26 @@
+﻿<Window x:Class="BookingApp.WPF.Views.Owner.AccStatistic"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.Views.Owner"
+        mc:Ignorable="d"
+        Title="AccStatistic" Height="450" Width="801">
+    <Grid>
+
+        <TextBlock Margin="131,11,611,401" > Smestaj :</TextBlock>
+        <TextBlock Margin="44,38,611,373"> Najvise rezervisan tokom :</TextBlock>
+        <!--<DataGrid ItemsSource="{Binding , UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding , UpdateSourceTrigger=PropertyChanged}"
+                          AutoGenerateColumns="False"  Height="302"  IsReadOnly="True"  BorderBrush="#FF0E4B87"
+                          Background="#FFC5CEF1" HorizontalGridLinesBrush="#FF0C0F3D" VerticalGridLinesBrush="#FF0C0F3D" Margin="44,66,263,66" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Year" Binding="{Binding }" />
+                <DataGridTextColumn Header="Reservations" Binding="{Binding }" />
+                <DataGridTextColumn Header="Cancelations" Binding="{Binding }" />
+                <DataGridTextColumn Header="Reservations postponed" Binding="{Binding }" />
+                <DataGridTextColumn Header="Renovation recomendations" Binding="{Binding }" />
+            </DataGrid.Columns>
+        </DataGrid>-->
+    </Grid>
+</Window>

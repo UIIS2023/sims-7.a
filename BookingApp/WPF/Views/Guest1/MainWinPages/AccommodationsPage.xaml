@@ -1,0 +1,231 @@
+﻿<Page x:Class="BookingApp.WPF.Views.Guest1.MainWinPages.AccommodationsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:converters="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+      mc:Ignorable="d"
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="AccommodationsPage">
+    <Page.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibility"></converters:BooleanToVisibilityConverter>
+    </Page.Resources>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="270" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label Foreground="WhiteSmoke" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"  >Accommodations</Label>
+            <fa:ImageAwesome VerticalAlignment="Center" Margin="10,20,0,0" 
+                             Foreground="WhiteSmoke" Icon="ExclamationCircle" 
+                             Height="20"
+                             Visibility="{Binding Path=ttEnabled,Converter={StaticResource BooleanToVisibility}}"
+                             ToolTip="Click on the corresponding 'Reserve' button to reserve a accommodation!" 
+                             ToolTipService.InitialShowDelay="100" ></fa:ImageAwesome>
+        </StackPanel>
+        <Border Grid.Column="1" Grid.RowSpan="2">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Color="#FF16213E" Offset="0" />
+                    <GradientStop Color="#533483" Offset="0.75" />
+                    <GradientStop Color="DarkCyan" Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <ListView BorderThickness="0" Background="#37306B" Name="listView" Margin="30,30,30,30" Grid.Row="1"
+                  ItemsSource="{Binding Path=accommodations}" SelectedItem="{Binding Path=selectedAccommodation}"
+                  SelectionMode="Single">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="BorderThickness" Value="0.8" />
+                    <Setter Property="BorderBrush" Value="WhiteSmoke" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="Focusable" Value="false"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+
+            <ListView.ItemTemplate>
+
+
+                <DataTemplate>
+
+                    <Grid>
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+
+                                <Image Stretch="Fill" Height="100" Width="150" Source="{Binding Path=firstImg.url}" />
+
+                                <StackPanel Orientation="Vertical">
+
+                                    <Label FontSize="15" FontWeight="Bold" Content="{Binding Path=name}"
+                                           Foreground="WhiteSmoke" />
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label FontStyle="Italic" Content="{Binding Path=type}" Foreground="WhiteSmoke" />
+                                        <Label Content="{Binding Path=location}" Foreground="WhiteSmoke" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Max guests: " Foreground="WhiteSmoke" />
+                                        <Label Content="{Binding Path=maxGuests}" Foreground="WhiteSmoke" />
+                                    </StackPanel>
+
+
+                                </StackPanel>
+
+
+                            </StackPanel>
+
+
+                            <Button Name="Reserve" Command ="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.reserveCommand}" CommandParameter="{Binding}"
+                                   
+                                    DockPanel.Dock="Right" Content="RESERVE" Height="60" Width="100"
+                                    HorizontalAlignment="Right" Background="DarkCyan" Foreground="WhiteSmoke"
+                                    FontSize="20" BorderThickness="0">
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="10" />
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+
+                        </DockPanel>
+                    </Grid>
+
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+
+
+        </ListView>
+
+        <Label Grid.Column="1" Name="FilterLabel" Visibility="Visible" Foreground="WhiteSmoke" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="30">Filters:</Label>
+        <Label Grid.Column="1" Name="AnyLabel" Foreground="WhiteSmoke" HorizontalAlignment="Left" Visibility="Hidden" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="25">Any where/any time:</Label>
+        
+        <Grid Grid.Column="1" Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Canvas Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+
+            <StackPanel Grid.Column="1" Visibility="Visible" Width="270" Name="SearchAllStack">
+                
+                <Label Content="Property name:" Foreground="WhiteSmoke" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <TextBox Height="25" Width="250" VerticalContentAlignment="Center" FontSize="15"
+                     Text="{Binding Path=searchName,UpdateSourceTrigger=PropertyChanged}">
+                    
+                </TextBox>
+
+                <Label Margin="0,10,0,0" Foreground="WhiteSmoke" Content="Location:" />
+
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                    <ComboBox SelectedItem="{Binding Path=SearchCountry,UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding Path=locations.Keys}" Margin="10,0,0,0" Width="100" Height="25"
+                          Text="Country" />
+                    <ComboBox SelectedItem="{Binding Path=SearchCity,UpdateSourceTrigger=PropertyChanged}"
+                          Name="CityComboBox" IsEnabled="False" Margin="21,0,0,0" Width="95" Text="City" Height="25" />
+                </StackPanel>
+
+                <Label Margin="0,10,0,0" Foreground="WhiteSmoke" Content="Accomodation type:" />
+                <ComboBox ItemsSource="{Binding Path=accomodationTypes,UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding Path=searchType,UpdateSourceTrigger=PropertyChanged}" Margin="10,10,0,0"
+                      HorizontalAlignment="Left" Width="100" Height="25" Text="Accomodation type" />
+
+                <Label Margin="0,10,0,0" Foreground="WhiteSmoke" Content="Number of guests:" />
+                    <xctk:IntegerUpDown Minimum="0" Maximum="50" Height="25"
+                                Value="{Binding Path=searchGuestNum,UpdateSourceTrigger=PropertyChanged}" Width="50"
+                                HorizontalAlignment="Left" Margin="10,10,0,0" />
+
+                <Label Margin="0,10,0,0" Foreground="WhiteSmoke" Content="Days for reservation:" />
+                    <xctk:IntegerUpDown Minimum="0" Maximum="365" Height="25"
+                                Value="{Binding Path=searchDays,UpdateSourceTrigger=PropertyChanged}" Width="50"
+                                HorizontalAlignment="Left" Margin="10,10,0,0" />
+
+                <Button Name="ApplyFilter" Click="ApplyFilter_Click" Content="Apply filters" Margin="0,30,0,0"
+                    Background="DarkCyan" Foreground="WhiteSmoke" Width="200" Height="45" FontSize="17" BorderThickness="0">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+
+            </StackPanel>
+                
+            <StackPanel Visibility="Hidden" Width="270" Name="AnyWhereStack"  >
+                    
+
+                    <Label Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="10,0,0,0">Check available dates:</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="10,0,0,0">From:</Label>
+                        <Label Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="100,0,0,0">To:</Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <DatePicker Margin="10,0,0,0" Height="25" SelectedDate="{Binding Path=startDate}" BorderThickness="0"></DatePicker>
+                        <DatePicker Margin="40,0,0,0" Height="25" SelectedDate="{Binding Path=endDate}" BorderThickness="0"></DatePicker>
+                    </StackPanel>
+                    <Label Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="10,10,0,0">Number of guests:</Label>
+                    <xctk:IntegerUpDown Value="{Binding Path=searchGuestNumAny}" HorizontalAlignment="Left" Margin="14,0,0,0" Width="50" Height="25"></xctk:IntegerUpDown>
+
+                    <Label Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="10,10,0,0">Days for reservation:</Label>
+                    <xctk:IntegerUpDown Value="{Binding Path=searchDaysAny}" HorizontalAlignment="Left" Margin="14,0,0,0" Width="50" Height="25"></xctk:IntegerUpDown>
+
+                    <Button Name="ApplyFilt" Click="AnyWhereAnyTimeFilter_Click" Content="Apply filters" Margin="0,30,0,0"
+                    Background="DarkCyan" Foreground="WhiteSmoke" Width="200" Height="45" FontSize="17" BorderThickness="0">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10" />
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                </StackPanel>
+            </Canvas>
+
+            <Canvas Grid.Row="1">
+                <StackPanel Width="270" Visibility="Hidden" Name="SearchAllStackBttn">
+                <Button Name="SearchAll" Click="SearchAll_Click" Content="Search all" Margin="0,30,0,0"
+                    Background="DarkCyan" Foreground="WhiteSmoke" Width="200" Height="50" FontSize="17" BorderThickness="0">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                </StackPanel>
+                
+                <StackPanel Width="270" Visibility="Visible" Name="AnyWhereStackBttn">
+                    <Button Name="SearchAny" Click="SearchAny_Click" Content="Any where/any time" Margin="0,30,0,0"
+                    Background="DarkCyan" Foreground="WhiteSmoke" Width="200" Height="50" FontSize="17" BorderThickness="0">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10" />
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    
+                </StackPanel>
+            </Canvas>
+        </Grid>
+    </Grid>
+</Page>

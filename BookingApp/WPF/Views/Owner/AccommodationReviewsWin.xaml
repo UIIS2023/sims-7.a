@@ -1,0 +1,23 @@
+﻿<Window x:Class="BookingApp.WPF.Views.Owner.AccommodationReviewsWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.Views.Owner"
+        mc:Ignorable="d"
+        Title="AccommodationReviewsWin" Height="450" Width="371">
+
+    <DataGrid ItemsSource="{Binding accomodationReviews, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding selectedReservation, UpdateSourceTrigger=PropertyChanged}"
+                                  AutoGenerateColumns="False"  IsReadOnly="True"  BorderBrush="#FF0E4B87"
+                                  Background="#FFC5CEF1" HorizontalGridLinesBrush="#FF0C0F3D" VerticalGridLinesBrush="#FF0C0F3D" Margin="0,10,0,10" >
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Guest" Binding="{Binding guest.username}" />
+            <DataGridTextColumn Header="Accomodation name" Binding="{Binding accommodation.name}" />
+            <DataGridTextColumn Header="Accomodation type" Binding="{Binding accommodation.type}" />
+            <DataGridTextColumn Header="Mark" Binding="{Binding ownerScore}" />
+
+        </DataGrid.Columns>
+    </DataGrid>
+    
+</Window>

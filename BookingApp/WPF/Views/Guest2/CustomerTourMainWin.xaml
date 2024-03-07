@@ -1,0 +1,70 @@
+﻿<Window x:Class="BookingApp.CustomerToursWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="CustomerToursWin" Height="700" Width="1200" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Grid Background="#b8c1ec">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Height="50" >
+            <Button Background="#232946" Foreground="#fffffe" BorderBrush="#b8c1ec" Content="Home" Padding="10" FontSize="20" Click="Home"/>
+            <Button Background="#232946" Foreground="#fffffe" BorderBrush="#b8c1ec" Content="Create Basic Tour" Padding="10" FontSize="20" Click="Basic_Tour"/>
+            <Button Background="#232946" Foreground="#fffffe" BorderBrush="#b8c1ec" Content="Create Complex Tour" Padding="10" FontSize="20"  Click="Complex_Tour"/>
+            <Button Background="#232946" Foreground="#fffffe" BorderBrush="#b8c1ec" Content="Live Tour" Padding="10" FontSize="20" Click="Live_Tour"/>
+            <Button Background="#232946" Foreground="#fffffe" BorderBrush="#b8c1ec" Content="Run DEMO" Padding="10" FontSize="20"/>
+            <Button Background="#232946" Foreground="#fffffe" BorderBrush="#b8c1ec" Content="Export PDF" Padding="10" FontSize="20" Click="Export_PDF"/>
+        </StackPanel>
+
+        <Label Foreground="#232946" BorderBrush="#232946" BorderThickness="3" Grid.Row="1" Content="SEARCH" Margin="45,81,985,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontSize="28" Height="50"/>
+
+        <!-- Search field -->
+        <Label Foreground="#232946" Grid.Row="1" Content="Location:" Margin="45,168,985,0" VerticalAlignment="Top" HorizontalContentAlignment="Left" FontSize="18" FontWeight="Bold" Height="35"/>
+        <TextBox Margin="45,203,985,0" VerticalAlignment="Top" Text="{Binding SearchLocation, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Height="35"/>
+
+        <Label Foreground="#232946" Grid.Row="1" Content="Duration:" Margin="45,368,985,0" VerticalAlignment="Top" HorizontalContentAlignment="Left" FontSize="18" FontWeight="Bold" Height="34"/>
+        <xctk:IntegerUpDown Minimum="0" Margin="45,402,985,168" Value="{Binding SearchDuration, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" />
+
+        <Label Foreground="#232946" Grid.Row="1" Content="Language:" Margin="45,268,985,0" VerticalAlignment="Top" HorizontalContentAlignment="Left" FontSize="18" FontWeight="Bold" Height="35" />
+        <TextBox Margin="45,303,985,0" VerticalAlignment="Top" Text="{Binding SearchLanguage, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Height="35" />
+
+        <Label Foreground="#232946" Grid.Row="1" Content="Number of Guests:" Margin="45,468,970,0" VerticalAlignment="Top" HorizontalContentAlignment="Left" FontSize="18" FontWeight="Bold"/>
+        <xctk:IntegerUpDown Minimum="0" Margin="45,502,985,68"  Value="{Binding SearchGuestNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"/>
+
+        <ListView Background="#f8f5f2" x:Name="listView" Grid.Row="1" Margin="275,60,350,34" ItemsSource="{Binding filteredData}" SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source= "{Binding Path=tour.image.url}" Width="200" Height="200" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="60,0,0,0">
+                            <TextBlock Foreground="#232946" Text="{Binding tour.name}" FontSize="20"/>
+                            <TextBlock Foreground="#eebbc3" Text="{Binding tour.Location.country}" FontSize="12" FontWeight="Bold"/>
+                            <TextBlock Foreground="#b8c1ec" Text="{Binding startTime}" FontSize="12" FontWeight="Bold" FontStyle="Italic" Margin="0,30,0,0" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Label Foreground="#232946" Grid.Row="1" Content="Choose a voucher if you like..." Margin="861,67,4,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" Height="50"/>
+
+        <DataGrid x:Name="dataGrid" Background="#f8f5f2" Foreground="#232946" BorderBrush="#b8c1ec" BorderThickness="3" Grid.Row="1" FontSize="16" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding vouchers}" Width="261" Margin="898,157,41,127">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding id}" Width="Auto"/>
+                <DataGridTextColumn Header="Expires" Binding="{Binding expireDate}"  Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Button -->
+        <Button Background="#232946" Foreground="#fffffe" BorderBrush="#b8c1ec" Grid.Row="1" Content="Tour booking" HorizontalAlignment="Left" Margin="928,531,0,34" Width="200" Click="Tour_Booking"  FontSize="20"/>
+
+
+    </Grid>
+</Window>

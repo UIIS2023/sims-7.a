@@ -1,0 +1,91 @@
+﻿<Window x:Class="BookingApp.WPF.Views.Guest1.MoveReservationWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.Views.Guest1"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="MoveReservationWin" Height="400" Width="600"
+        Name="MoveReservationWindow">
+    <Window.Resources>
+        <Style TargetType="{x:Type DatePicker}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true" >
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="Background" Value="MistyRose"/>
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="1.0"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Color="#FF16213E" Offset="0"/>
+                    <GradientStop Color="#533483" Offset="0.75"/>
+                    <GradientStop Color="DarkCyan" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Label Foreground="WhiteSmoke" Grid.Row="0" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" >Move reservation</Label>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="20,20,0,0">
+        
+            <StackPanel Orientation="Horizontal">
+                <Label>Current check-in date:</Label>
+                <Label Content="{Binding Path=reservation.startDate,StringFormat=\{0:dd.MM.yyyy\}}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Current check-out date:</Label>
+                <Label Content="{Binding Path=reservation.endDate,StringFormat=\{0:dd.MM.yyyy\}}"></Label>
+            </StackPanel>
+            <Label FontWeight="Bold">New reservation date:</Label>
+            <StackPanel Orientation="Horizontal">
+                <Label>Check-in:</Label>
+                <Label Margin="65,0,0,0">Check-out:</Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <DatePicker SelectedDate="{Binding Path=NewStartDate,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Name="StartDatePicker" ></DatePicker>
+                <DatePicker SelectedDate="{Binding Path=newEndDate,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Name="EndDatePicker" Margin="20,0,0,0"></DatePicker>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0,10,0,0" Orientation="Horizontal" >
+
+            <Button  Name="Cancel" Command="{Binding Path=CancelCommand}" CommandParameter="{Binding ElementName=MoveReservationWindow}"  Foreground="WhiteSmoke" FontSize="15" BorderThickness="0" Margin="0,0,10,0"   Width="100" Height="40" Content="Cancel" HorizontalAlignment="Left" Background="Red">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button Name="Reserve" Command="{Binding Path=MoveReservationCommand}" CommandParameter="{Binding ElementName=MoveReservationWindow}" Foreground="WhiteSmoke" FontSize="15" BorderThickness="0"  Width="100" Height="40" Content="Confirm" HorizontalAlignment="Left" Background="DarkCyan">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            
+
+        </StackPanel>
+
+    </Grid>
+</Window>

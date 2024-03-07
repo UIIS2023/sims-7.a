@@ -1,0 +1,120 @@
+﻿<Page x:Class="BookingApp.WPF.Views.Guest1.MainWinPages.RequestsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:guest1="clr-namespace:BookingApp.WPF.ViewModels.Guest1"
+      xmlns:converters="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RequestsPage"
+>
+    <Page.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibility"></converters:BooleanToVisibilityConverter>
+    </Page.Resources>
+    
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label Foreground="WhiteSmoke" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"  >Requests</Label>
+            <fa:ImageAwesome VerticalAlignment="Center" Margin="10,20,0,0" 
+                             Foreground="WhiteSmoke" Icon="ExclamationCircle" 
+                             Height="20"
+                             ToolTip="Here you can see your requests and their status (accepted,denied,pending)." 
+                             ToolTipService.InitialShowDelay="100"
+                             Visibility="{Binding Path=ttEnabled,Converter={StaticResource BooleanToVisibility}}"
+                             ></fa:ImageAwesome>
+        </StackPanel>
+
+        <ListView Grid.Row="1" Background="#37306B" BorderThickness="0" Name="listViewRequests"
+                  ItemsSource="{Binding Path=requests}" SelectedItem="{Binding Path=selectedRequest}"
+                  Margin="30,30,30,30" SelectionMode="Single">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="BorderThickness" Value="0.8" />
+                    <Setter Property="BorderBrush" Value="WhiteSmoke" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="Focusable" Value="false"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+
+
+                            <StackPanel Orientation="Vertical">
+
+                                <Label FontSize="15" FontWeight="Bold"
+                                       Content="{Binding Path=oldReservation.accomodation.name}"
+                                       Foreground="WhiteSmoke" />
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Label FontStyle="Italic" Content="{Binding Path=oldReservation.accomodation.type}"
+                                           Foreground="WhiteSmoke" />
+                                    <Label Content="{Binding Path=oldReservation.accomodation.location}"
+                                           Foreground="WhiteSmoke" />
+                                </StackPanel>
+
+
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                <Label Content="New Check-in Date: " Foreground="WhiteSmoke" />
+                                <Label Content="{Binding Path=newStartDate,StringFormat=\{0:dd.MM.yyyy\}}"
+                                       Foreground="WhiteSmoke" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                <Label Content="New Check-out Date: " Foreground="WhiteSmoke" />
+                                <Label Content="{Binding Path=newEndDate,StringFormat=\{0:dd.MM.yyyy\}}"
+                                       Foreground="WhiteSmoke" />
+                            </StackPanel>
+
+
+                        </StackPanel>
+
+                        <StackPanel HorizontalAlignment="Right" DockPanel.Dock="Right" Orientation="Horizontal">
+
+                            <Label FontWeight="ExtraBold" Margin="30,0,50,-20" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" Content="{Binding Path=getStatusString}"
+                                   Foreground="WhiteSmoke" FontSize="18">
+                                <Label.RenderTransform>
+                                    <RotateTransform Angle="-25" />
+                                </Label.RenderTransform>
+                            </Label>
+
+                            <Button Name="RequestInfo" IsEnabled="True" CommandParameter="{Binding}" Command ="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.showRequestInfoCommand}"
+                                    
+                                    DockPanel.Dock="Right" Content="Info" Height="60" Width="100"
+                                    HorizontalAlignment="Right" Background="DarkCyan" Foreground="WhiteSmoke"
+                                    FontSize="20" BorderThickness="0"
+                                    >
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="10" />
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+
+        </ListView>
+
+
+    </Grid>
+</Page>

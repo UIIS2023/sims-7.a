@@ -1,0 +1,243 @@
+﻿<Window x:Class="BookingApp.WPF.Views.Guide.AcceptBasicTourWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.Views.Guide" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="AcceptBasicTourWin" Height="750" Width="430"
+        WindowStartupLocation="CenterScreen">
+    <Grid Width="430" Height="750">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Basic Tour Requests Details" FontSize="25" Width="430"
+               VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+               FontFamily="Segoe UI Light"
+               FontWeight="Bold" Background="#9932CC"/>
+
+
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="430" Height="700">
+            <StackPanel.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#DDA0DD" Offset="0"/>
+                    <GradientStop Color="#FAD5A5 " Offset="1"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+
+
+            <Grid Height="200" Width="430" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                
+
+                <Label Grid.Row="0" Grid.Column="0" FontSize="24" Content="Country:"
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="AntiqueWhite" Padding="10,0,0,0" />
+                <Label Grid.Row="1" Grid.Column="0" FontSize="24" Content="City:"
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="AntiqueWhite" Padding="10,0,0,0"/>
+                <Label Grid.Row="2" Grid.Column="0" FontSize="24" Content="Language:"
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="AntiqueWhite" Padding="10,0,0,0"/>
+                <Label Grid.Row="3" Grid.Column="0" FontSize="24" Content="Number of guests:"
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="AntiqueWhite" Padding="10,0,0,0"/>
+
+                <Label Grid.Row="0" Grid.Column="1" Height="35" VerticalAlignment="Center" Margin="0,0,10,0" Content="{Binding Path=SelectedTour.state, UpdateSourceTrigger=PropertyChanged}"
+                            Foreground="AntiqueWhite" Padding="10,0,0,0" FontSize="24" FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+
+                <Label Grid.Row="1" Grid.Column="1" Height="35" VerticalAlignment="Center" Margin="0,0,10,0" Content="{Binding Path=SelectedTour.city, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="AntiqueWhite" Padding="10,0,0,0" FontSize="24" FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label Grid.Row="2" Grid.Column="1" Height="35" VerticalAlignment="Center" Margin="0,0,10,0" Content="{Binding Path=SelectedTour.language, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="AntiqueWhite" Padding="10,0,0,0" FontSize="24" FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label Grid.Row="3" Grid.Column="1" Height="35" VerticalAlignment="Center" Margin="0,0,10,0" Content="{Binding Path=SelectedTour.numberOfGuests, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="AntiqueWhite" Padding="10,0,0,0" FontSize="24" FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+
+                <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+                    <Label Grid.Row="5" Grid.Column="0" FontSize="24" Content="From:" 
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                       Foreground="AntiqueWhite" Padding="10,0,0,0"/>
+                    <Label Grid.Row="5" Grid.Column="0" Height="35" VerticalAlignment="Center" Margin="0,0,10,0" Content="{Binding Path=SelectedTour.start, UpdateSourceTrigger=PropertyChanged}"
+                           Foreground="AntiqueWhite" Padding="10,0,0,0" FontSize="20" FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+
+
+                </StackPanel>
+                <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                    <Label Grid.Row="5" Grid.Column="1" FontSize="24" Content="To:"
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                       Foreground="AntiqueWhite" Padding="10,0,0,0"/>
+                    <Label Grid.Row="5" Grid.Column="0" Height="35" VerticalAlignment="Center" Margin="0,0,10,0" Content="{Binding Path=SelectedTour.end, UpdateSourceTrigger=PropertyChanged}"
+                           Foreground="AntiqueWhite" Padding="10,0,0,0" FontSize="20" FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+
+                </StackPanel>
+            </Grid>
+
+            <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Enter tour details: " FontSize="30"
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Center" Foreground="AntiqueWhite" />
+            
+            <Grid Height="300" Width="410" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" FontSize="24" Content="Tour name:"
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" 
+                       VerticalContentAlignment="Center" Foreground="AntiqueWhite"/>
+                <Label Grid.Row="1" Grid.Column="0" FontSize="24" Content="Start point:"
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" 
+                       VerticalContentAlignment="Center" Foreground="AntiqueWhite"/>
+                <Label Grid.Row="2" Grid.Column="0" FontSize="24" Content="Mid point:"
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" 
+                       VerticalContentAlignment="Center" Foreground="AntiqueWhite"/>
+                <Label Grid.Row="3" Grid.Column="0" FontSize="24" Content="End point:"
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" 
+                       VerticalContentAlignment="Center" Foreground="AntiqueWhite"/>
+                <Label Grid.Row="4" Grid.Column="0" FontSize="24" Content="Start time:"
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" 
+                       VerticalContentAlignment="Center" Foreground="AntiqueWhite"/>
+                <Label Grid.Row="6" Grid.Column="0" FontSize="24" Content="Duration:"
+                       FontFamily="Franklin Gothic Medium" HorizontalContentAlignment="Left" 
+                       VerticalContentAlignment="Center" Foreground="AntiqueWhite"/>
+
+                <TextBox Grid.Row="0" Grid.Column="1" Height="35" VerticalAlignment="Center" Margin="0,0,10,0" Text="{Binding Path=NameBind, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Height="35" VerticalAlignment="Center" Margin="0,0,10,0" Text="{Binding Path=StartPointName, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Height="35" VerticalAlignment="Center" Margin="0,0,10,0" Text="{Binding Path=MidPointName, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Height="35" VerticalAlignment="Center" Margin="0,0,10,0" Text="{Binding Path=EndPointName, UpdateSourceTrigger=PropertyChanged}"/>
+                <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{x:Static sys:DateTime.Now}" Text="{Binding Path=StartTime, UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}" 
+         Height="35" Background="White" Margin="0,0,10,0" ></DatePicker>
+                <xctk:TimePicker Grid.Row="5" Grid.Column="1" Height="35" Value="{Binding Path=StartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,10,0"  />
+                <TextBox Grid.Row="6" Grid.Column="1" Height="35" VerticalAlignment="Center" Margin="0,0,10,0" Text="{Binding Path=Duration, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" Grid.Row="2" Height="30" Width="35" Name="AddMidPoint" Command="{Binding AddMidPointClick}">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#9932CC"></Setter>
+                            <Setter Property="Foreground" Value="AntiqueWhite"></Setter>
+                            <Setter Property="FontSize" Value="30"></Setter>
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                        </Style>
+
+                    </Button.Resources>
+                    <Button.Content>
+                        <TextBlock Text="+" Margin="-11, -11, -11, -8"/>
+                    </Button.Content>
+                </Button>
+
+            </Grid>
+
+            <Grid Height="75" Width="400">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="Back" Grid.Column="0" Grid.Row="0" Command="{Binding ConfirmClick}" Width="120" Height="40">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="#9932CC"/>
+                            <Setter Property="BorderBrush" Value="#708090"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Padding" Value="10,5"/>
+                            <Setter Property="Margin" Value="0,10,0,0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="border" Property="Background" Value="#3CB371"/>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="#3CB371"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="border" Property="Background" Value="#2E8B57"/>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="#2E8B57"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button Content="Confirm" Grid.Column="1" Grid.Row="0"  Command="{Binding ConfirmClick}" Width="120" Height="40">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="#9932CC"/>
+                            <Setter Property="BorderBrush" Value="#708090"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Padding" Value="10,5"/>
+                            <Setter Property="Margin" Value="0,10,0,0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="border" Property="Background" Value="#3CB371"/>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="#3CB371"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="border" Property="Background" Value="#2E8B57"/>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="#2E8B57"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

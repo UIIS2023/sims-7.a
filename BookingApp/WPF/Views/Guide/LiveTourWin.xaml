@@ -1,0 +1,156 @@
+﻿<Window x:Class="BookingApp.WPF.ViewModels.Guide.LiveTourWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.ViewModels.Guide"
+        mc:Ignorable="d"
+        Title="LiveTourWin" Height="750" Width="430"
+        WindowStartupLocation="CenterScreen">
+    <Grid Width="430" Height="750">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Live Tour" FontSize="25" Width="430"
+               VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+               FontFamily="Segoe UI Light"
+               FontWeight="Bold" Background="#FF8C00"/>
+
+
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="430" Height="700">
+            <StackPanel.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#F2D2BD" Offset="0"/>
+                    <GradientStop Color="#FAD5A5 " Offset="1"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+
+            <Label Content="Select current checkpoint" FontSize="25" Width="430"
+               VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+               FontFamily="Segoe UI Light"
+               FontWeight="Bold" />
+            
+            <DataGrid x:Name="tourPointsDataGrid" CellEditEnding="SetCheckPoint" ItemsSource="{Binding Path=TourPoints, UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False"  SelectedItem="{Binding Path=SelectedTourPoint, UpdateSourceTrigger=PropertyChanged}"
+          SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
+          Height="200" Margin="10" Width="410" 
+          BorderThickness="0" AlternatingRowBackground="#F5F5DC" ColumnWidth="*"
+          Background="#FFDAB9" 
+          RowBackground="#FFEFD5" RowHeight="40">
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#FF8C00"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Foreground" Value="#333333"/>
+                        <Setter Property="FontFamily" Value="Arial"/>
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="BorderThickness" Value="3"/>
+                        <Setter Property="Padding" Value="5"/>
+                    </Style>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFA500"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="White"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#FFEEDD"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="Black"/>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header=" No." IsReadOnly="True" Binding="{Binding order, UpdateSourceTrigger=PropertyChanged}" Width="50"></DataGridTextColumn>
+                    <DataGridTextColumn Header=" Name" IsReadOnly="True" Binding="{Binding name, UpdateSourceTrigger=PropertyChanged}" Width="*"></DataGridTextColumn>
+                    <DataGridCheckBoxColumn  Header=" Done" Binding="{Binding status, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="80" ></DataGridCheckBoxColumn>
+                </DataGrid.Columns>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding status}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+
+            <Label Content="Select present guests" FontSize="25" Width="430"
+               VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+               FontFamily="Segoe UI Light"
+               FontWeight="Bold" />
+            
+            <DataGrid  ItemsSource="{Binding Path=Guests}" SelectedItem="{Binding Path=SelectedAttendence, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" 
+          SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
+          Height="150" Margin="10" Width="410" 
+          BorderThickness="0" AlternatingRowBackground="#F5F5DC" ColumnWidth="*"
+          Background="#FFDAB9" 
+          RowBackground="#FFEFD5" RowHeight="40">
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#FF8C00"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Foreground" Value="#333333"/>
+                        <Setter Property="FontFamily" Value="Arial"/>
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="BorderThickness" Value="3"/>
+                        <Setter Property="Padding" Value="5"/>
+                    </Style>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFA500"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="White"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#FFEEDD"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="Black"/>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Username" Binding="{Binding guest.username}" Width="*"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Present">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Present" Name="Present" Click="Present_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+            <Border Height="60" Width="390" Margin="10,20,10,10" CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#FF8C00" Offset="0"/>
+                        <GradientStop Color="#FFBF00" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Button Height="60" Width="390" Opacity="0" Click="EndTour_Click"/>
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" 
+                           Foreground="FloralWhite" 
+                           FontFamily="Franklin Gothic Medium" FontWeight="Bold" Content="END TOUR"/>
+                </Grid>
+            </Border>
+
+
+            <Border Height="60" Width="390" Margin="10,20,10,10" CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#FF8C00" Offset="0"/>
+                        <GradientStop Color="#FFBF00" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Button Height="60" Width="390" Opacity="0" Click="Back_Click"/>
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" 
+                           Foreground="FloralWhite" 
+                           FontFamily="Franklin Gothic Medium" FontWeight="Bold" Content="BACK TO MY TOURS"/>
+                </Grid>
+            </Border>
+
+
+        </StackPanel>
+
+    </Grid>
+</Window>

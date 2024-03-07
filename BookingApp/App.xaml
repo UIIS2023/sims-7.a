@@ -1,0 +1,14 @@
+﻿<Application x:Class="BookingApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BookingApp"
+             xmlns:viewModelGuest1="clr-namespace:BookingApp.WPF.ViewModels.Guest1"
+             xmlns:viewGuest1Pages="clr-namespace:BookingApp.WPF.Views.Guest1.MainWinPages"
+             StartupUri="View/LoginWin.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+
+
+        </ResourceDictionary>    
+    </Application.Resources>
+</Application>

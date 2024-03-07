@@ -1,0 +1,105 @@
+﻿<Window x:Class="BookingApp.WPF.Views.Guest1.HelpWizard.Wizard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:BookingApp.WPF.Views.Guest1.HelpWizard"
+        mc:Ignorable="d"
+        Title="Wizard" Height="400" Width="500">
+    <Grid>
+        <xctk:Wizard FinishButtonClosesWindow="True">
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="Help">
+                    <b:InvokeCommandAction Command="{Binding Path=ShowHelpCommand}" />
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
+
+            <xctk:WizardPage
+                Title="Welcome to our Booking Application Wizard!"
+                x:Name="Page1"
+                Description="We're excited to have you on board and help you make the most of our application. This wizard will guide you through the key features and functionalities, ensuring you have a smooth and enjoyable experience. Let's get started!"
+                >
+                <xctk:WizardPage.ExteriorPanelContent>
+                    <Image Source="/Resources/Images/Guest1/wizback.PNG"  ></Image>
+                </xctk:WizardPage.ExteriorPanelContent>
+            </xctk:WizardPage>
+
+            <xctk:WizardPage
+                Title="Step 1: Explore Accommodation Filters"
+                x:Name="Page2"
+                NextPage="{Binding ElementName=Page3}"
+                PreviousPage="{Binding ElementName=Page1}"
+                Description="Our application offers powerful filtering options to help you find the perfect accommodation. You can filter by Property name, Location, Accommodation type, Number of guests, and Days for reservation. Additionally, we have a unique 'Anywhere/Anytime' filtering option that allows you to search for accommodations based on specific criteria or date availability. Don't forget to press the 'Apply Filters' button to see your refined search results."
+                >
+                <xctk:WizardPage.ExteriorPanelContent>
+                    <Image Source="/Resources/Images/Guest1/wizback.PNG"  ></Image>
+                </xctk:WizardPage.ExteriorPanelContent>
+            </xctk:WizardPage>
+
+            <xctk:WizardPage
+                Title="Step 2: Reserving Accommodations"
+                x:Name="Page3"
+                NextPage="{Binding ElementName=Page4}"
+                PreviousPage="{Binding ElementName=Page2}"
+                Description="To reserve an accommodation, simply select the desired listing and click the 'Reserve' button. A window will pop up, providing you with detailed information and pictures of the accommodation. Enter your preferred date range, the number of guests, and the length of stay. You can either click 'Cancel' to abort the process or 'Search Dates' to explore available dates within your criteria. In case there are no free accommodations for your selected date range, our system will suggest alternative dates to consider."
+                >
+                <xctk:WizardPage.ExteriorPanelContent>
+                    <Image Source="/Resources/Images/Guest1/wizback.PNG"  ></Image>
+                </xctk:WizardPage.ExteriorPanelContent>
+            </xctk:WizardPage>
+
+            <xctk:WizardPage
+                Title="Step 3: Canceling Reservations"
+                x:Name="Page4"
+                NextPage="{Binding ElementName=Page5}"
+                PreviousPage="{Binding ElementName=Page3}"
+                Description="In the 'My Reservations' section, you can manage your past and current reservations. To cancel a current reservation, select the specific booking and click the 'Cancel Reservation' button. A pop-up window will appear, asking for confirmation. Choose either 'Yes' to proceed with the cancellation or 'No' to keep the reservation intact. Once canceled, you'll receive a notification confirming the cancellation."
+                >
+                <xctk:WizardPage.ExteriorPanelContent>
+                    <Image Source="/Resources/Images/Guest1/wizback.PNG"  ></Image>
+                </xctk:WizardPage.ExteriorPanelContent>
+            </xctk:WizardPage>
+
+            <xctk:WizardPage
+                Title="Step 4: Requesting Date Changes"
+                x:Name="Page5"
+                NextPage="{Binding ElementName=Page6}"
+                PreviousPage="{Binding ElementName=Page4}"
+                Description="If you need to change the date of a current reservation, select the booking in the 'My Reservations' section and click the 'Request Date Change' button. A pop-up window will allow you to select new check-in and check-out dates. Confirm your selection, and the system will process your request. You can track the status of your date change request in the 'Requests' section."
+                >
+                <xctk:WizardPage.ExteriorPanelContent>
+                    <Image Source="/Resources/Images/Guest1/wizback.PNG"  ></Image>
+                </xctk:WizardPage.ExteriorPanelContent>
+            </xctk:WizardPage>
+
+            <xctk:WizardPage
+                Title="Step 5: Writing Reviews and Joining the Forum"
+                x:Name="Page6"
+                NextPage="{Binding ElementName=Page7}"
+                PreviousPage="{Binding ElementName=Page5}"
+                Description="After completing a reservation, you have up to 5 days to write a review. Click on the reservation in the 'My Reservations' section and choose the 'Write a Review' option. Rate the accommodation and the owner, leave a detailed comment, and even add pictures. If you have suggestions for improvement, check the 'Help us improve!' checkbox. Additionally, you can participate in the forum by browsing and commenting on open threads. Remember, only the thread creator can close it."
+                >
+                <xctk:WizardPage.ExteriorPanelContent>
+                    <Image Source="/Resources/Images/Guest1/wizback.PNG"  ></Image>
+                </xctk:WizardPage.ExteriorPanelContent>
+            </xctk:WizardPage>
+
+            <xctk:WizardPage
+                Title="Step 6: Ready to use the application!"
+                x:Name="Page7"
+                CanFinish="True"
+                PreviousPage="{Binding ElementName=Page6}"
+                Description="That's it for our Booking Application Wizard! We hope this overview helps you navigate and utilize our application effectively. Should you have any further questions or need assistance, feel free to explore our comprehensive help documentation or contact our support team. Enjoy your booking experience!"
+                >
+                <xctk:WizardPage.ExteriorPanelContent>
+                    <Image Source="/Resources/Images/Guest1/wizback.PNG"  ></Image>
+                </xctk:WizardPage.ExteriorPanelContent>
+            </xctk:WizardPage>
+
+
+
+        </xctk:Wizard>
+    </Grid>
+</Window>

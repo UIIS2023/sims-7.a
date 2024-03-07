@@ -1,0 +1,136 @@
+﻿<Window x:Class="BookingApp.WPF.Views.Guest1.ReservationInfoView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.Views.Guest1"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:converters="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Title="ReservationInfoView" Height="600" Width="1000"
+        Name="ReservationInfoWin">
+    <Window.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibility"></converters:BooleanToVisibilityConverter>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Color="#FF16213E" Offset="0"/>
+                    <GradientStop Color="#533483" Offset="0.75"/>
+                    <GradientStop Color="DarkCyan" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Label Content="Reservation" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="WhiteSmoke" FontSize="70"></Label>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.6*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel  Orientation="Horizontal"  HorizontalAlignment="Center">
+                    <Button Name="NextImgLeft" Command="{Binding Path=NextImageLeftCommand}"  BorderThickness="0" Width="30" Height="100" Content="&lt;&lt;" Background="DarkCyan">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Image Source="{Binding Path=currentImage.url}" Height="300" Width="300" ></Image>
+                    <Button Name="NextImgRight" Command="{Binding Path=NextImageRightCommand}" BorderThickness="0" Width="30" Height="100" Content=">>" Background="DarkCyan">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical" >
+                    <Label HorizontalAlignment="Left" Content="{Binding Path=reservation.accomodation.name}" FontSize="40" FontWeight="Bold"></Label>
+                    <Label HorizontalAlignment="Left" Content="{Binding Path=reservation.accomodation.location}" FontSize="20" FontStyle="Italic"></Label>
+
+                    <Label FontSize="15" Content="{Binding Path=reservation.accomodation.type}"/>
+
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontSize="15" Content="Check-in date: "/>
+                        <Label FontSize="15" Content="{Binding Path=reservation.startDate}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontSize="15" Content="Check-out date: "/>
+                        <Label FontSize="15" Content="{Binding Path=reservation.endDate}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontSize="15" Content="Min days for cancelation: "/>
+                        <Label FontSize="15" Content="{Binding Path=reservation.accomodation.minDaysForCancelation}"/>
+                    </StackPanel>
+
+
+
+
+
+                </StackPanel>
+
+                <StackPanel  Grid.Row="1"  Orientation="Horizontal">
+
+                    <Button  Name="Cancel" Command="{Binding Path=CloseWindowCommand}" CommandParameter="{Binding ElementName=ReservationInfoWin}"   Foreground="WhiteSmoke" FontSize="20" BorderThickness="0" Margin="-40,0,10,0" Width="150" Height="40" Content="Exit" HorizontalAlignment="Left" Background="Red">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button Name="GeneratePDF" Command="{Binding Path=SavePDFCommand}" Content="Generate PDF"  Foreground="WhiteSmoke" FontSize="20" BorderThickness="0" Width="150" Height="40"  HorizontalAlignment="Left" Background="DarkCyan">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <fa:ImageAwesome VerticalAlignment="Center" Margin="10,0,0,0" 
+                              Icon="ExclamationCircle" 
+                             Height="15"
+                             ToolTip="Generate a PDF for the reservation info!" 
+                             ToolTipService.InitialShowDelay="100"
+                             Visibility="{Binding Path=ttEnabled,Converter={StaticResource BooleanToVisibility}}"></fa:ImageAwesome>
+                    
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>

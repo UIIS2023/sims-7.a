@@ -1,0 +1,207 @@
+﻿<Window x:Class="BookingApp.WPF.Views.Guest1.WriteReviewWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.Views.Guest1"
+        xmlns:converters="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Title="WriteReviewWin" Height="800" Width="1000"
+        Name="WriteReviewWindow"
+        >
+    <Window.Resources>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true" >
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="Background" Value="MistyRose"/>
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="1.0"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type ComboBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true" >
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="Background" Value="MistyRose"/>
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="1.0"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibility"></converters:BooleanToVisibilityConverter>
+
+        <Style BasedOn="{StaticResource {x:Type ToggleButton}}" 
+               TargetType="{x:Type CheckBox}"
+               x:Key="ReviewButton">
+            <Style.Setters>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="Gold"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="FontSize" Value="21"/>
+                <Setter Property="fa:Awesome.Content" Value="StarOutline"></Setter>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="fa:Awesome.Content" Value="Star"></Setter>
+                </Trigger>
+
+            </Style.Triggers>
+
+        </Style>
+
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Color="#FF16213E" Offset="0"/>
+                    <GradientStop Color="#533483" Offset="0.75"/>
+                    <GradientStop Color="DarkCyan" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Label Foreground="WhiteSmoke" Grid.Row="0" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" >Write review</Label>
+
+        <Grid Grid.Row="1">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical" Margin="20,20,0,0">
+
+            <StackPanel Orientation="Horizontal">
+                <Label FontWeight="Bold" FontSize="20" Content="{Binding Path=reservation.accomodation.name}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label FontStyle="Italic" FontSize="15" Content="{Binding Path=reservation.accomodation.type}"></Label>
+                <Label FontStyle="Italic" FontSize="15" Content="{Binding Path=reservation.accomodation.location}"></Label>
+            </StackPanel>
+
+            <Label Margin="0,10,0,0" FontWeight="Bold">Accommodation cleanliness:</Label>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Name="Star_1" Click="Star_OnClick" Style="{StaticResource ReviewButton}"
+                            ></CheckBox>
+                <CheckBox Name="Star_2" IsChecked="{Binding ElementName=Star_1,Path=IsChecked,Mode=OneWayToSource}" Click="Star_OnClick" Style="{StaticResource ReviewButton}"
+                            ></CheckBox>
+
+                <CheckBox Name="Star_3" IsChecked="{Binding ElementName=Star_2,Path=IsChecked,Mode=OneWayToSource}" Click="Star_OnClick"  Style="{StaticResource ReviewButton}" 
+                            ></CheckBox>
+
+                <CheckBox Name="Star_4" IsChecked="{Binding ElementName=Star_3,Path=IsChecked,Mode=OneWayToSource}" Click="Star_OnClick"  Style="{StaticResource ReviewButton}"
+                            ></CheckBox>
+
+                <CheckBox Name="Star_5" IsChecked="{Binding ElementName=Star_4,Path=IsChecked,Mode=OneWayToSource}" Click="Star_OnClick" Style="{StaticResource ReviewButton}"
+                             ></CheckBox>
+            </StackPanel>
+
+            <Label FontWeight="Bold">Owner rating:</Label>
+
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Name="Star_1_1" Click="Star1_OnClick" Style="{StaticResource ReviewButton}"
+                ></CheckBox>
+                <CheckBox Name="Star_2_1" IsChecked="{Binding ElementName=Star_1_1,Path=IsChecked,Mode=OneWayToSource}" Click="Star1_OnClick" Style="{StaticResource ReviewButton}"
+                ></CheckBox>
+
+                <CheckBox Name="Star_3_1" IsChecked="{Binding ElementName=Star_2_1,Path=IsChecked,Mode=OneWayToSource}" Click="Star1_OnClick"  Style="{StaticResource ReviewButton}" 
+                ></CheckBox>
+
+                <CheckBox Name="Star_4_1" IsChecked="{Binding ElementName=Star_3_1,Path=IsChecked,Mode=OneWayToSource}" Click="Star1_OnClick"  Style="{StaticResource ReviewButton}"
+                ></CheckBox>
+
+                <CheckBox Name="Star_5_1" IsChecked="{Binding ElementName=Star_4_1,Path=IsChecked,Mode=OneWayToSource}" Click="Star1_OnClick" Style="{StaticResource ReviewButton}"></CheckBox>
+            </StackPanel>
+
+
+            <Label FontWeight="Bold" FontSize="15">Leave a comment:</Label>
+            <TextBox Text="{Binding Path=comment,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" Width="300" Height="100" HorizontalAlignment="Left" TextChanged="TextBox_TextChanged"></TextBox>
+
+                <Label FontWeight="Bold" FontSize="15">Upload image url:</Label>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Path=imageUrl}" Width="300" HorizontalAlignment="Left"></TextBox>
+                <Button Width="20" Name="AddImg" Command="{Binding Path=AddImageUrlCommand}">+</Button>
+                <Button Width="20" Name="DeleteImg" Command="{Binding Path=DeleteImageUrlCommand}">-</Button>
+            </StackPanel>
+
+            <ListView Width="340" Height="150" ItemsSource="{Binding Path=images,ValidatesOnDataErrors=True}" HorizontalAlignment="Left"
+                >
+               <ListView.ItemTemplate>
+                   <DataTemplate>
+                        <Grid>
+                            <StackPanel>
+                                <Label FontSize="10"  Content="{Binding Path=url}"></Label>
+                            </StackPanel>
+                        </Grid>
+                        </DataTemplate>
+               </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+
+            <StackPanel Margin="0,99,0,0" Orientation="Horizontal">
+                <CheckBox Name="ImproveCheckBox" VerticalContentAlignment="Center" IsChecked="{Binding Path=isProposalChecked}" ></CheckBox>
+                <Label FontWeight="Bold">Help us improve!</Label>
+                    <fa:ImageAwesome VerticalAlignment="Center" Margin="10,0,0,0" 
+                              Icon="ExclamationCircle" 
+                             Height="15"
+                             ToolTip="By clicking this button you will send the owner a renovation proposal!" 
+                             ToolTipService.InitialShowDelay="100"
+                             Visibility="{Binding Path=ttEnabled,Converter={StaticResource BooleanToVisibility}}"
+                                     ></fa:ImageAwesome>
+                </StackPanel>
+
+            <Label Margin="0,10,0,0" FontWeight="Bold" FontSize="15">Renovation urgency level:</Label>
+                <ComboBox IsEnabled="{Binding ElementName=ImproveCheckBox,Path=IsChecked}"   SelectedItem="{Binding Path=RenovationUrgency,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" ItemsSource="{Binding Path=urgencyLevelList}" Width="200" Margin="5,0,0,0" HorizontalAlignment="Left"></ComboBox>
+
+                <Label  Margin="0,22,0,0" FontWeight="Bold" FontSize="15">Renovation proposal:</Label>
+                <TextBox IsEnabled="{Binding ElementName=ImproveCheckBox,Path=IsChecked,UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=renovationComment,ValidatesOnDataErrors=True}" TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" Width="300" Height="100" HorizontalAlignment="Left"></TextBox>
+
+            </StackPanel>
+
+        </Grid>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center"  Orientation="Horizontal" >
+
+            <Button  Name="Cancel" Command="{Binding Path=CloseWindowCommand}" CommandParameter="{Binding ElementName=WriteReviewWindow}"  Foreground="WhiteSmoke" FontSize="15" BorderThickness="0" Margin="0,0,10,0"  Width="150" Height="40"  Content="Cancel" HorizontalAlignment="Left" Background="Red">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button Name="Review" Command="{Binding Path=SaveReviewCommand}" CommandParameter="{Binding ElementName=WriteReviewWindow}"  Foreground="WhiteSmoke" FontSize="15" BorderThickness="0"  Width="150" Height="40" Content="Confirm" HorizontalAlignment="Left" Background="DarkCyan">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            
+
+        </StackPanel>
+    </Grid>
+</Window>

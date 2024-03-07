@@ -1,0 +1,97 @@
+﻿<Window x:Class="BookingApp.WPF.Views.Guide.TourRequestWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.Views.Guide"
+        mc:Ignorable="d"
+        Title="TourRequestWin" Height="750" Width="430"
+        WindowStartupLocation="CenterScreen">
+    <Grid Width="430" Height="750">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Tour Requests" FontSize="25" Width="430"
+               VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+               FontFamily="Segoe UI Light"
+               FontWeight="Bold" Background="#9932CC"/>
+
+
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="430" Height="700">
+            <StackPanel.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#DDA0DD" Offset="0"/>
+                    <GradientStop Color="#FAD5A5 " Offset="1"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+
+            <Border Height="60" Width="390" Margin="10,20,10,10" CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#DA70D6" Offset="0"/>
+                        <GradientStop Color="#9932CC" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Button Height="60" Width="390" Opacity="0" Command="{Binding Path=BasicTourRequestClick}"/>
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" 
+                           Foreground="FloralWhite" 
+                           FontFamily="Franklin Gothic Medium" FontWeight="Bold" Content="BASIC TOUR REQUESTS"/>
+                </Grid>
+            </Border>
+
+
+            <Border Height="60" Width="390" Margin="10,20,10,10" CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#DA70D6" Offset="0"/>
+                        <GradientStop Color="#9932CC" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Button Height="60" Width="390" Opacity="0"/>
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" 
+                           Foreground="FloralWhite" 
+                           FontFamily="Franklin Gothic Medium" FontWeight="Bold" Content="COMPLEX TOUR REQUESTS"/>
+                </Grid>
+            </Border>
+
+
+            <Border Height="60" Width="390" Margin="10,20,10,10" CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#DA70D6" Offset="0"/>
+                        <GradientStop Color="#9932CC" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Button Height="60" Width="390" Opacity="0" Command="{Binding Path=TourRequestStatisticsClick}"/>
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" 
+                           Foreground="FloralWhite" 
+                           FontFamily="Franklin Gothic Medium" FontWeight="Bold" Content="TOUR REQUEST STATISTICS"/>
+                </Grid>
+            </Border>
+           
+            <Border Height="60" Width="390" Margin="10,320,10,10" CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#DA70D6" Offset="0"/>
+                        <GradientStop Color="#9932CC" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Button Height="60" Width="390" Opacity="0" Command="{Binding Path=RemoveTourClick}"/>
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" 
+                           Foreground="FloralWhite" 
+                           FontFamily="Franklin Gothic Medium" FontWeight="Bold" Content="MAIN MENU"/>
+                </Grid>
+            </Border>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

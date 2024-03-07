@@ -1,0 +1,15 @@
+﻿<Window x:Class="BookingApp.WPF.Views.Guide.TourFeedbackView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.Views.Guide"
+        mc:Ignorable="d"
+        Title="TourFeedbackView" Height="400" Width="700">
+    <Grid>
+        <Canvas>
+            <DataGrid ItemsSource="{Binding Path=Feedbacks}" Canvas.Left="83" Canvas.Top="93" HorizontalAlignment="Left" VerticalAlignment="Top" Height="173" Width="533"/>
+            <Button Content="Report Feedback" Name="Report" Canvas.Left="494" Canvas.Top="288"/>
+        </Canvas>
+    </Grid>
+</Window>

@@ -1,0 +1,104 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\Guide\background.png" />
+    <None Remove="Resources\Images\Guide\profile2.png" />
+    <None Remove="Resources\Images\Guide\profile3.png" />
+    <None Remove="Resources\Images\Guide\route3.png" />
+    <None Remove="Resources\Images\Guide\Statistics.png" />
+    <None Remove="Resources\Images\Guide\themeandlanguage2.png" />
+    <None Remove="Resources\Images\Guide\TourImage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+    <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="IronPdf" Version="2023.6.10" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
+
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+    <PackageReference Include="MvvmLight" Version="5.4.1.1" />
+
+    <PackageReference Include="Microsoft.TeamFoundationServer.ExtendedClient" Version="16.205.1" />
+
+    <PackageReference Include="OxyPlot.Wpf" Version="2.1.2" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\UseCases\Guest2\" />
+    <Folder Include="Domain\RepositoryInterfaces\Owner\" />
+    <Folder Include="Repository\Guide\" />
+    <Folder Include="WPF\ViewModels\Owner\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="Resources\Images\Guide\background.png" />
+    <Resource Include="Resources\Images\Guide\profile2.png" />
+    <Resource Include="Resources\Images\Guide\profile3.png" />
+    <Resource Include="Resources\Images\Guide\route3.png" />
+    <Resource Include="Resources\Images\Guide\Statistics.png" />
+    <Resource Include="Resources\Images\Guide\themeandlanguage2.png" />
+    <Resource Include="Resources\Images\Guide\TourImage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="WPF\Views\Guest1\FreeDatesWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\Views\Guest1\MainBookingWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\Views\Guest1\MainWinPages\AccommodationsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\Views\Guest1\MainWinPages\ReservationsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\Views\Guest1\ReservationWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\Views\Owner\DenyRequestWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\Views\Owner\RateReservationWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\Views\Owner\SuperOwnerWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="WPF\Views\Guest1\FreeDatesWin.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\Views\Guest1\MainBookingWin.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\Views\Guest1\MainWinPages\AccommodationsPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\Views\Guest1\MainWinPages\ReservationsPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\Views\Guest1\ReservationWin.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>
